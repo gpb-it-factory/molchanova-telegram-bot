@@ -33,8 +33,8 @@ scale 1
 
 !define Background #0d1117
 !define Arrow #bcbec4
-!define ColorY #8c7c50
-!define ColorP #675582
+!define ColorY #bfa96d
+!define ColorP #947abb
 !define ColorG #72b76b
 
 skinparam backgroundColor Background
@@ -61,27 +61,38 @@ participant "Frontend" as F ColorG
 participant "Middle" as M ColorY
 participant "Backend" as B ColorP
 
-User -> F: Request
+User -> F: Command
 activate F ColorG
 
-F -> M: HTTP
+F -> M: Request
 activate M ColorY
 
-M -> B: HTTP
+M -> B: Request
 activate B ColorP
-B --> M: HTTP
+B --> M: Response
 deactivate B
 
-M --> F: HTTP
+M --> F: Response
 deactivate M
 
-F --> User: Response
+F --> User: Answer
 deactivate F
 
 @enduml
 ```
 
 </details>
+
+## Планы на будущее
+- **Создать «скелет» бота** \
+  Разработать расширяемый механизм добавления новых команд.
+- **Добавить первую тестовую команду** \
+  Добавить `/ping`, в ответе возвращающая `pong`.
+
+## Контакты
+Связаться со мной можно через:
+- [GitHub](https://github.com/molchmd): molchmd
+- [Telegram](https://t.me/molchmd): @molchmd
 
 ---
 
