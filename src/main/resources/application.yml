@@ -1,0 +1,7 @@
+spring:
+  application:
+    name: molchanova-telegram-bot
+
+telegrambot:
+  name: ${TG_NAME_GPB}
+  token: ${TG_TOKEN_GPB}
