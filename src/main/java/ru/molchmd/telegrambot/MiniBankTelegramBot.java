@@ -1,5 +1,6 @@
 package ru.molchmd.telegrambot;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
@@ -8,6 +9,7 @@ import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 import ru.molchmd.telegrambot.handler.MessageHandler;
 
 @Component
+@Slf4j
 public class MiniBankTelegramBot extends TelegramLongPollingBot {
     private final String name;
     private final String token;
@@ -30,9 +32,10 @@ public class MiniBankTelegramBot extends TelegramLongPollingBot {
 
         try {
             execute(messageHandler.createResponse(update));
+            log.info("Send message to id[{}]", update.getMessage().getChatId());
         }
         catch (TelegramApiException e) {
-            System.out.println("! Error [execute]: " + e);
+            log.error("Message was not sent to id[{}]", update.getMessage().getChatId());
         }
     }
 
