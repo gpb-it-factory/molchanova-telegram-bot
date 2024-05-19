@@ -4,6 +4,7 @@ build/
 out/
 target/
 diagramsUML/
+logs/
 
 # Файлы и папки настроек IntelliJ IDEA
 .idea/
