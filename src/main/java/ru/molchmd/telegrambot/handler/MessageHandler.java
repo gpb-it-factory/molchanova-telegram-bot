@@ -20,6 +20,7 @@ public class MessageHandler {
             if (this.commands.containsKey(command.getName())) {
                 log.error("Duplicate command name: {}, classes: {}, {}",
                         command.getName(), this.commands.get(command.getName()), command);
+                throw new IllegalStateException("Duplicate command name");
             }
             this.commands.put(command.getName(), command);
         });
