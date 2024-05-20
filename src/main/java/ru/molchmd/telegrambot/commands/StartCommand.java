@@ -6,7 +6,7 @@ import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Update;
 
 @Component
-public class StartCommand implements Command {
+public class StartCommand implements ICommand {
     @Override
     public SendMessage getResponseMessage(Update update) {
         return new SendMessage(
@@ -24,16 +24,6 @@ public class StartCommand implements Command {
 
     @Override
     public @NonNull String getName() {
-        return "/start";
-    }
-
-    @Override
-    public @NonNull String getDescription() {
-        return "стартовое сообщение";
-    }
-
-    @Override
-    public boolean isDisplayToMenu() {
-        return false;
+        return Command.START.name;
     }
 }

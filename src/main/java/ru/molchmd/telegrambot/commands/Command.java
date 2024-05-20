@@ -1,12 +1,17 @@
 package ru.molchmd.telegrambot.commands;
 
-import org.springframework.lang.NonNull;
-import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
-import org.telegram.telegrambots.meta.api.objects.Update;
+public enum Command {
+    START("/start", "стартовое сообщение", false),
+    HELP("/help", "узнать список доступных команд", true),
+    PING("/ping", "отвечу pong", true);
 
-public interface Command {
-    SendMessage getResponseMessage(Update update);
-    @NonNull String getName();
-    @NonNull String getDescription();
-    boolean isDisplayToMenu();
+    public final String name;
+    public final String description;
+    public final boolean isDisplayToMenu;
+
+    Command(String name, String description, boolean isDisplayToMenu) {
+        this.name = name;
+        this.description = description;
+        this.isDisplayToMenu = isDisplayToMenu;
+    }
 }

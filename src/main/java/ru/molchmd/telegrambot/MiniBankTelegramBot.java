@@ -5,13 +5,13 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.api.methods.commands.DeleteMyCommands;
-import org.telegram.telegrambots.meta.api.methods.commands.GetMyCommands;
 import org.telegram.telegrambots.meta.api.methods.commands.SetMyCommands;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.api.objects.commands.BotCommand;
 import org.telegram.telegrambots.meta.api.objects.commands.scope.BotCommandScopeDefault;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 import ru.molchmd.telegrambot.commands.Command;
+import ru.molchmd.telegrambot.commands.ICommand;
 import ru.molchmd.telegrambot.handler.MessageHandler;
 
 import java.util.ArrayList;
@@ -26,14 +26,13 @@ public class MiniBankTelegramBot extends TelegramLongPollingBot {
 
     public MiniBankTelegramBot(@Value("${telegrambot.name}") String name,
                                @Value("${telegrambot.token}") String token,
-                               MessageHandler messageHandler,
-                               List<Command> commands) {
+                               MessageHandler messageHandler) {
         super(token);
         this.name = name;
         this.token = token;
         this.messageHandler = messageHandler;
 
-        createMenu(commands, true);
+        createMenu(true);
     }
 
     @Override
@@ -56,7 +55,7 @@ public class MiniBankTelegramBot extends TelegramLongPollingBot {
         return name;
     }
 
-    private void createMenu(List<Command> commands, boolean isCreate) {
+    private void createMenu(boolean isCreate) {
         if (!isCreate) {
             try {
                 execute(new DeleteMyCommands(new BotCommandScopeDefault(), "ru"));
@@ -69,10 +68,10 @@ public class MiniBankTelegramBot extends TelegramLongPollingBot {
         }
 
         List<BotCommand> menu = new ArrayList<>();
-        commands.forEach(command -> {
-            if (command.isDisplayToMenu())
-                menu.add(new BotCommand(command.getName(), command.getDescription()));
-        });
+        for (Command command : Command.values()) {
+            if (command.isDisplayToMenu)
+                menu.add(new BotCommand(command.name, command.description));
+        }
 
         try {
             execute(new SetMyCommands(menu, new BotCommandScopeDefault(), "ru"));

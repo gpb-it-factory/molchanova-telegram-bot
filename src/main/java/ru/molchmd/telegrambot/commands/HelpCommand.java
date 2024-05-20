@@ -6,7 +6,7 @@ import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Update;
 
 @Component
-public class HelpCommand implements Command {
+public class HelpCommand implements ICommand {
     @Override
     public SendMessage getResponseMessage(Update update) {
         return new SendMessage(
@@ -23,16 +23,6 @@ public class HelpCommand implements Command {
 
     @Override
     public @NonNull String getName() {
-        return "/help";
-    }
-
-    @Override
-    public @NonNull String getDescription() {
-        return "узнать список доступных команд";
-    }
-
-    @Override
-    public boolean isDisplayToMenu() {
-        return true;
+        return Command.HELP.name;
     }
 }

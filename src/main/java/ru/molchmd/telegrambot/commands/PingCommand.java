@@ -6,7 +6,7 @@ import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Update;
 
 @Component
-public class PingCommand implements Command {
+public class PingCommand implements ICommand {
     @Override
     public SendMessage getResponseMessage(Update update) {
         SendMessage message = new SendMessage();
@@ -17,16 +17,6 @@ public class PingCommand implements Command {
 
     @Override
     public @NonNull String getName() {
-        return "/ping";
-    }
-
-    @Override
-    public @NonNull String getDescription() {
-        return "отвечу pong";
-    }
-
-    @Override
-    public boolean isDisplayToMenu() {
-        return true;
+        return Command.PING.name;
     }
 }
