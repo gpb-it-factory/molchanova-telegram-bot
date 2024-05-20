@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.api.methods.commands.DeleteMyCommands;
+import org.telegram.telegrambots.meta.api.methods.commands.GetMyCommands;
 import org.telegram.telegrambots.meta.api.methods.commands.SetMyCommands;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.api.objects.commands.BotCommand;
@@ -37,7 +38,7 @@ public class MiniBankTelegramBot extends TelegramLongPollingBot {
 
     @Override
     public void onUpdateReceived(Update update) {
-        if (update.hasMessage() == false || update.getMessage().hasText() == false) {
+        if (!update.hasMessage() || !update.getMessage().hasText()) {
             return;
         }
 
@@ -56,7 +57,7 @@ public class MiniBankTelegramBot extends TelegramLongPollingBot {
     }
 
     private void createMenu(List<Command> commands, boolean isCreate) {
-        if (isCreate == false) {
+        if (!isCreate) {
             try {
                 execute(new DeleteMyCommands(new BotCommandScopeDefault(), "ru"));
                 log.info("Menu was deleted successfully");
