@@ -20,6 +20,3 @@ logs/
 # Логи и отчёты
 *.log
 *.jks
-
-# Файлы конфигурации
-application.properties
