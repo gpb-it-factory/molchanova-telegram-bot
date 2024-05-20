@@ -27,7 +27,7 @@ public class MessageHandler {
         if (command == null) {
             return notFoundCommand(update);
         }
-        return command.getMessage(update);
+        return command.getResponseMessage(update);
     }
 
     private SendMessage notFoundCommand(Update update) {
