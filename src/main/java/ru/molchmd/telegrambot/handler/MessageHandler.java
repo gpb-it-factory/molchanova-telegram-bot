@@ -1,5 +1,6 @@
 package ru.molchmd.telegrambot.handler;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Update;
@@ -10,11 +11,17 @@ import java.util.List;
 import java.util.Map;
 
 @Component
+@Slf4j
 public class MessageHandler {
     private final Map<String, Command> commands = new HashMap<>();
 
     public MessageHandler(List<Command> commands) {
-        commands.forEach(command -> this.commands.put(command.getName(), command));
+        commands.forEach(command -> {
+            if (this.commands.containsKey(command.getName()))
+                log.error("Duplicate command name: {}, classes: {}, {}",
+                        command.getName(), this.commands.get(command.getName()), command);
+            this.commands.put(command.getName(), command);
+        });
     }
 
     public SendMessage createResponse(Update update) {
