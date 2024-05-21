@@ -2,7 +2,7 @@ package ru.molchmd.telegrambot.commands;
 
 public enum Command {
     START("/start", "стартовое сообщение", false),
-    HELP("/help", "узнать список доступных команд", true),
+    HELP("/help", "список доступных команд", true),
     PING("/ping", "отвечу pong", true);
 
     public final String name;

@@ -7,17 +7,29 @@ import org.telegram.telegrambots.meta.api.objects.Update;
 
 @Component
 public class HelpCommand implements ICommand {
+    private final String responseText;
+
+    public HelpCommand() {
+        StringBuilder builder = new StringBuilder("""
+                Всегда готов помочь!
+                 
+                Доступные команды:
+                """);
+        for (Command command : Command.values())
+            if (command.isDisplayToMenu) {
+                builder.append(command.name);
+                builder.append(" - ");
+                builder.append(command.description);
+                builder.append("\n");
+            }
+        responseText = builder.toString();
+    }
+
     @Override
     public SendMessage getResponseMessage(Update update) {
         return new SendMessage(
                 update.getMessage().getChatId().toString(),
-                """
-                Всегда готов помочь!
-                 
-                Доступные команды:
-                /help - узнать список всех команд
-                /ping - отвечу pong
-                """
+                responseText
         );
     }
 
