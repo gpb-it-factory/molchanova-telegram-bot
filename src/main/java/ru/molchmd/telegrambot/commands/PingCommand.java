@@ -16,7 +16,7 @@ public class PingCommand implements ICommand {
     }
 
     @Override
-    public @NonNull String getName() {
-        return Command.PING.name;
+    public @NonNull Command getCommand() {
+        return Command.PING;
     }
 }

@@ -6,5 +6,5 @@ import org.telegram.telegrambots.meta.api.objects.Update;
 
 public interface ICommand {
     SendMessage getResponseMessage(Update update);
-    @NonNull String getName();
+    @NonNull Command getCommand();
 }

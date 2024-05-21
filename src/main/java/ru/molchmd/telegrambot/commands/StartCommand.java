@@ -23,7 +23,7 @@ public class StartCommand implements ICommand {
     }
 
     @Override
-    public @NonNull String getName() {
-        return Command.START.name;
+    public @NonNull Command getCommand() {
+        return Command.START;
     }
 }

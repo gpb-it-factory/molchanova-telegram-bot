@@ -17,12 +17,12 @@ public class MessageHandler {
 
     public MessageHandler(List<ICommand> commands) {
         commands.forEach(command -> {
-            if (this.commands.containsKey(command.getName())) {
+            if (this.commands.containsKey(command.getCommand().name)) {
                 log.error("Duplicate command name: {}, classes: {}, {}",
-                        command.getName(), this.commands.get(command.getName()), command);
+                        command.getCommand(), this.commands.get(command.getCommand().name), command);
                 throw new IllegalStateException("Duplicate command name");
             }
-            this.commands.put(command.getName(), command);
+            this.commands.put(command.getCommand().name, command);
         });
     }
 
