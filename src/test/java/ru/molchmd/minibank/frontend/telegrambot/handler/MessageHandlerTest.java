@@ -7,11 +7,11 @@ import org.telegram.telegrambots.meta.api.objects.Update;
 import ru.molchmd.minibank.frontend.factory.MessageHandlerFactory;
 import ru.molchmd.minibank.frontend.factory.UpdateFactory;
 
-@DisplayName("Проверка текста ответов на команды через handler")
+@DisplayName("Проверка выбора команды через ответ")
 public class MessageHandlerTest {
     private final MessageHandler messageHandler = MessageHandlerFactory.createMessageHandler();
 
-    @DisplayName("Проверка ответа на команду /start")
+    @DisplayName("Проверка ответа команды /start")
     @Test
     void getResponseOnStartCommand() {
         Update update = UpdateFactory.createUpdate("/start");
@@ -27,7 +27,7 @@ public class MessageHandlerTest {
         Assertions.assertEquals(EXPECTED_ANSWER, responseMessage);
     }
 
-    @DisplayName("Проверка ответа на команду /help")
+    @DisplayName("Проверка ответа команды /help")
     @Test
     void getResponseOnHelpCommand() {
         Update update = UpdateFactory.createUpdate("/help");
@@ -44,7 +44,7 @@ public class MessageHandlerTest {
         Assertions.assertEquals(EXPECTED_ANSWER, responseMessage);
     }
 
-    @DisplayName("Проверка ответа на команду /ping")
+    @DisplayName("Проверка ответа команды /ping")
     @Test
     void getResponseOnPingCommand() {
         Update update = UpdateFactory.createUpdate("/ping");
@@ -55,7 +55,7 @@ public class MessageHandlerTest {
         Assertions.assertEquals(EXPECTED_ANSWER, responseMessage);
     }
 
-    @DisplayName("Проверка ответа на неизвестную команду")
+    @DisplayName("Проверка ответа неизвестной команды")
     @Test
     void getResponseOnUnknownCommand() {
         Update update = UpdateFactory.createUpdate("/hello");
@@ -69,7 +69,7 @@ public class MessageHandlerTest {
         Assertions.assertEquals(EXPECTED_ANSWER, responseMessage);
     }
 
-    @DisplayName("Проверка ответа на команду /register")
+    @DisplayName("Проверка ответа команды /register")
     @Test
     void getResponseOnRegisterCommand() {
         Update update = UpdateFactory.createUpdate("/register");
