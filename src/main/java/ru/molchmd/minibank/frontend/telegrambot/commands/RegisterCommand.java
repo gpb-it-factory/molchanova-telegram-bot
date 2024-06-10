@@ -27,17 +27,20 @@ public class RegisterCommand implements ICommand {
         SendMessage message = new SendMessage();
         message.setChatId(update.getMessage().getChatId());
 
-        var response = executeRequest(update.getMessage().getChatId());
+        var response = executeRequest(
+                update.getMessage().getChatId(),
+                update.getMessage().getChat().getUserName()
+        );
 
         message.setText(getTextFromResponse(response));
         return message;
     }
 
-    private ResponseEntity<String> executeRequest(Long userId) {
+    private ResponseEntity<String> executeRequest(Long userId, String userName) {
         try {
             ResponseEntity<String> response = rest.postForEntity(
                     endpoint,
-                    new CreateUserRequest(userId),
+                    new CreateUserRequest(userId, userName),
                     String.class
             );
             return response;

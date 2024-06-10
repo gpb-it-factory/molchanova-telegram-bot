@@ -12,6 +12,7 @@ public class UpdateFactory {
         chat.setId(88005553535L);
         chat.setType("private");
         chat.setFirstName("Tester");
+        chat.setUserName("i_am_tester");
 
         Message message = new Message();
         message.setMessageId(1);

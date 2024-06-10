@@ -7,7 +7,7 @@ import org.telegram.telegrambots.meta.api.objects.Update;
 import ru.molchmd.minibank.frontend.factory.MessageHandlerFactory;
 import ru.molchmd.minibank.frontend.factory.UpdateFactory;
 
-@DisplayName("Проверка текста ответов на команды")
+@DisplayName("Проверка текста ответов на команды через handler")
 public class MessageHandlerTest {
     private final MessageHandler messageHandler = MessageHandlerFactory.createMessageHandler();
 
