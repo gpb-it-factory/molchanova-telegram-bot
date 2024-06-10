@@ -5,3 +5,9 @@ spring:
 telegrambot:
   name: ${TG_NAME_GPB}
   token: ${TG_TOKEN_GPB}
+  client:
+    urls:
+      host: http://localhost:8084/api/v1
+      endpoints:
+        users:
+          register: /users
