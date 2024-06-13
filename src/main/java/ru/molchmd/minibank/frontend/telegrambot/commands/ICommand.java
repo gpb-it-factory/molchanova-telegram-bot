@@ -1,4 +1,4 @@
-package ru.molchmd.telegrambot.commands;
+package ru.molchmd.minibank.frontend.telegrambot.commands;
 
 import org.springframework.lang.NonNull;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;

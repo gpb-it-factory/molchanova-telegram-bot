@@ -1,4 +1,4 @@
-package ru.molchmd.telegrambot;
+package ru.molchmd.minibank.frontend.telegrambot;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
@@ -6,7 +6,7 @@ import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
-import ru.molchmd.telegrambot.handler.MessageHandler;
+import ru.molchmd.minibank.frontend.telegrambot.handler.MessageHandler;
 
 @Component
 @Slf4j
