@@ -9,7 +9,6 @@ import org.springframework.web.client.ResourceAccessException;
 import org.springframework.web.client.RestTemplate;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Update;
-import org.w3c.dom.Text;
 import ru.molchmd.minibank.frontend.client.dto.request.CreateUserRequest;
 import ru.molchmd.minibank.frontend.telegrambot.util.TextResponse;
 
