@@ -30,7 +30,7 @@ public class RegisterCommandTest {
         RegisterCommand registerCommand = new RegisterCommand("CONFLICT", rest);
         Update update = UpdateFactory.createUpdate();
 
-        String EXPECTED_ANSWER = "Ошибка! Вы уже зарегистрированы!";
+        String EXPECTED_ANSWER = "_Ошибка!_ Вы уже зарегистрированы!";
         String responseMessage = registerCommand.getResponseMessage(update).getText();
 
         Assertions.assertEquals(EXPECTED_ANSWER, responseMessage);
@@ -54,7 +54,7 @@ public class RegisterCommandTest {
         RegisterCommand registerCommand = new RegisterCommand("UNKNOWN_EXCEPTION", rest);
         Update update = UpdateFactory.createUpdate();
 
-        String EXPECTED_ANSWER = "Ошибка! Что-то пошло не так.";
+        String EXPECTED_ANSWER = "_Ошибка!_ Что-то пошло не так.";
         String responseMessage = registerCommand.getResponseMessage(update).getText();
 
         Assertions.assertEquals(EXPECTED_ANSWER, responseMessage);
@@ -66,7 +66,7 @@ public class RegisterCommandTest {
         RegisterCommand registerCommand = new RegisterCommand("BAD_REQUEST", rest);
         Update update = UpdateFactory.createUpdate();
 
-        String EXPECTED_ANSWER = "Ошибка! Что-то пошло не так.";
+        String EXPECTED_ANSWER = "_Ошибка!_ Что-то пошло не так.";
         String responseMessage = registerCommand.getResponseMessage(update).getText();
 
         Assertions.assertEquals(EXPECTED_ANSWER, responseMessage);

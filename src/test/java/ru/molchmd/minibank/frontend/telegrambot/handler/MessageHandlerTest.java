@@ -35,8 +35,9 @@ public class MessageHandlerTest {
             Всегда готов помочь!
                  
             Доступные команды:
-            /help - список доступных команд
-            /register - зарегистрироваться
+            | /help - список доступных команд
+            | /register - зарегистрироваться
+            | /createaccount - создать счет
             """;
 
         String responseMessage = messageHandler.createResponse(update).getText();

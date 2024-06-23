@@ -9,7 +9,9 @@ import org.springframework.web.client.ResourceAccessException;
 import org.springframework.web.client.RestTemplate;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Update;
+import org.w3c.dom.Text;
 import ru.molchmd.minibank.frontend.client.dto.request.CreateUserRequest;
+import ru.molchmd.minibank.frontend.telegrambot.util.TextResponse;
 
 @Component
 public class RegisterCommand implements ICommand {
@@ -33,6 +35,7 @@ public class RegisterCommand implements ICommand {
         );
 
         message.setText(getTextFromResponse(response));
+        message.enableMarkdown(true);
         return message;
     }
 
@@ -59,9 +62,9 @@ public class RegisterCommand implements ICommand {
 
         switch (code) {
             case CREATED -> text = "Вы успешно зарегистрировались!";
-            case CONFLICT -> text = "Ошибка! Вы уже зарегистрированы!";
-            case SERVICE_UNAVAILABLE -> text = "Сервер недоступен!\nПопробуйте позже.";
-            default -> text = "Ошибка! Что-то пошло не так.";
+            case CONFLICT -> text = "_Ошибка!_ Вы уже зарегистрированы!";
+            case SERVICE_UNAVAILABLE -> text = TextResponse.serverIsNotAvailable();
+            default -> text = TextResponse.somethingWentWrong();
         }
         return text;
     }

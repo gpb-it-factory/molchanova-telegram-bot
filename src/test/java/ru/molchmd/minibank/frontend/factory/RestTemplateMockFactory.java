@@ -19,7 +19,7 @@ public class RestTemplateMockFactory {
                 case "CONFLICT" -> response = new ResponseEntity<>(HttpStatus.CONFLICT);
                 case "SERVICE_UNAVAILABLE" -> throw new ResourceAccessException("Server is not available");
                 case "UNKNOWN_EXCEPTION" -> throw new RuntimeException("Something went wrong");
-                default -> response = new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+                default -> response = new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
             }
             return response;
         }
