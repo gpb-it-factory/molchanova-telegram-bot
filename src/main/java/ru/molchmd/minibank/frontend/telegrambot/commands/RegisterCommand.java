@@ -52,7 +52,7 @@ public class RegisterCommand implements ICommand {
             return new ResponseEntity<>(HttpStatus.SERVICE_UNAVAILABLE);
         }
         catch (Exception exception) {
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 

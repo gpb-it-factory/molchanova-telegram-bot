@@ -80,4 +80,15 @@ public class MessageHandlerTest {
 
         Assertions.assertEquals(EXPECTED_ANSWER, responseMessage);
     }
+
+    @DisplayName("Проверка ответа команды /createaccount")
+    @Test
+    void getResponseOnCreateAccountCommand() {
+        Update update = UpdateFactory.createUpdate("/createaccount");
+        String EXPECTED_ANSWER = "Счет успешно создан!";
+
+        String responseMessage = messageHandler.createResponse(update).getText();
+
+        Assertions.assertEquals(EXPECTED_ANSWER, responseMessage);
+    }
 }

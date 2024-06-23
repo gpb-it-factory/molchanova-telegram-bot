@@ -38,7 +38,7 @@ public class RegisterCommandTest {
 
     @DisplayName("Проверка ответа на недоступность сервера")
     @Test
-    void getResponseMessageService_Unavailable() {
+    void getResponseMessageServiceUnavailable() {
         RegisterCommand registerCommand = new RegisterCommand("SERVICE_UNAVAILABLE", rest);
         Update update = UpdateFactory.createUpdate();
 
@@ -63,7 +63,7 @@ public class RegisterCommandTest {
     @DisplayName("Проверка ответа на любой другой статус ответа")
     @Test
     void getResponseMessageBadRequest() {
-        RegisterCommand registerCommand = new RegisterCommand("BAD_REQUEST", rest);
+        RegisterCommand registerCommand = new RegisterCommand("INTERNAL_SERVER_ERROR", rest);
         Update update = UpdateFactory.createUpdate();
 
         String EXPECTED_ANSWER = "_Ошибка!_ Что-то пошло не так.";

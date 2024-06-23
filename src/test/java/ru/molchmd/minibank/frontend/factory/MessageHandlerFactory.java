@@ -12,7 +12,8 @@ public class MessageHandlerFactory {
                 new StartCommand(),
                 new HelpCommand(),
                 new PingCommand(),
-                new RegisterCommand("CREATED", new RestTemplateMockFactory.RestTemplateRegisterCommand())
+                new RegisterCommand("CREATED", new RestTemplateMockFactory.RestTemplateRegisterCommand()),
+                new CreateAccountCommand("CREATED", new RestTemplateMockFactory.RestTemplateCreateAccountCommand())
         );
         return new MessageHandler(commands);
     }
