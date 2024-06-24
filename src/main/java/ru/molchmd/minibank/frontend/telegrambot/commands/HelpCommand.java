@@ -17,6 +17,7 @@ public class HelpCommand implements ICommand {
                 """);
         for (Command command : Command.values())
             if (command.isDisplayToMenu) {
+                builder.append("| ");
                 builder.append(command.name);
                 builder.append(" - ");
                 builder.append(command.description);

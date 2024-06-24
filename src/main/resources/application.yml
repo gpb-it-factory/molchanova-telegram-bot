@@ -11,3 +11,5 @@ telegrambot:
       endpoints:
         users:
           register: /users
+        accounts:
+          create: /users/{id}/accounts

@@ -35,8 +35,9 @@ public class MessageHandlerTest {
             Всегда готов помочь!
                  
             Доступные команды:
-            /help - список доступных команд
-            /register - зарегистрироваться
+            | /help - список доступных команд
+            | /register - зарегистрироваться
+            | /createaccount - создать счет
             """;
 
         String responseMessage = messageHandler.createResponse(update).getText();
@@ -74,6 +75,17 @@ public class MessageHandlerTest {
     void getResponseOnRegisterCommand() {
         Update update = UpdateFactory.createUpdate("/register");
         String EXPECTED_ANSWER = "Вы успешно зарегистрировались!";
+
+        String responseMessage = messageHandler.createResponse(update).getText();
+
+        Assertions.assertEquals(EXPECTED_ANSWER, responseMessage);
+    }
+
+    @DisplayName("Проверка ответа команды /createaccount")
+    @Test
+    void getResponseOnCreateAccountCommand() {
+        Update update = UpdateFactory.createUpdate("/createaccount");
+        String EXPECTED_ANSWER = "Счет успешно создан!";
 
         String responseMessage = messageHandler.createResponse(update).getText();
 

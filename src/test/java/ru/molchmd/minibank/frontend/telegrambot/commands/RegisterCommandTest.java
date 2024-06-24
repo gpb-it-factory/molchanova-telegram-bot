@@ -30,7 +30,7 @@ public class RegisterCommandTest {
         RegisterCommand registerCommand = new RegisterCommand("CONFLICT", rest);
         Update update = UpdateFactory.createUpdate();
 
-        String EXPECTED_ANSWER = "Ошибка! Вы уже зарегистрированы!";
+        String EXPECTED_ANSWER = "_Ошибка!_ Вы уже зарегистрированы!";
         String responseMessage = registerCommand.getResponseMessage(update).getText();
 
         Assertions.assertEquals(EXPECTED_ANSWER, responseMessage);
@@ -38,7 +38,7 @@ public class RegisterCommandTest {
 
     @DisplayName("Проверка ответа на недоступность сервера")
     @Test
-    void getResponseMessageService_Unavailable() {
+    void getResponseMessageServiceUnavailable() {
         RegisterCommand registerCommand = new RegisterCommand("SERVICE_UNAVAILABLE", rest);
         Update update = UpdateFactory.createUpdate();
 
@@ -54,7 +54,7 @@ public class RegisterCommandTest {
         RegisterCommand registerCommand = new RegisterCommand("UNKNOWN_EXCEPTION", rest);
         Update update = UpdateFactory.createUpdate();
 
-        String EXPECTED_ANSWER = "Ошибка! Что-то пошло не так.";
+        String EXPECTED_ANSWER = "_Ошибка!_ Что-то пошло не так.";
         String responseMessage = registerCommand.getResponseMessage(update).getText();
 
         Assertions.assertEquals(EXPECTED_ANSWER, responseMessage);
@@ -63,10 +63,10 @@ public class RegisterCommandTest {
     @DisplayName("Проверка ответа на любой другой статус ответа")
     @Test
     void getResponseMessageBadRequest() {
-        RegisterCommand registerCommand = new RegisterCommand("BAD_REQUEST", rest);
+        RegisterCommand registerCommand = new RegisterCommand("INTERNAL_SERVER_ERROR", rest);
         Update update = UpdateFactory.createUpdate();
 
-        String EXPECTED_ANSWER = "Ошибка! Что-то пошло не так.";
+        String EXPECTED_ANSWER = "_Ошибка!_ Что-то пошло не так.";
         String responseMessage = registerCommand.getResponseMessage(update).getText();
 
         Assertions.assertEquals(EXPECTED_ANSWER, responseMessage);

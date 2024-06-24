@@ -19,7 +19,23 @@ public class RestTemplateMockFactory {
                 case "CONFLICT" -> response = new ResponseEntity<>(HttpStatus.CONFLICT);
                 case "SERVICE_UNAVAILABLE" -> throw new ResourceAccessException("Server is not available");
                 case "UNKNOWN_EXCEPTION" -> throw new RuntimeException("Something went wrong");
-                default -> response = new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+                default -> response = new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+            }
+            return response;
+        }
+    }
+
+    public static class RestTemplateCreateAccountCommand extends RestTemplate {
+        @Override
+        public <T> ResponseEntity<T> postForEntity(String url, Object request, Class<T> responseType, Object... uriVariables) throws RestClientException {
+            ResponseEntity<T> response;
+            switch (url) {
+                case "CREATED" -> response = new ResponseEntity<>(HttpStatus.CREATED);
+                case "BAD_REQUEST" -> response = new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+                case "CONFLICT" -> response = new ResponseEntity<>(HttpStatus.CONFLICT);
+                case "SERVICE_UNAVAILABLE" -> throw new ResourceAccessException("Server is not available");
+                case "UNKNOWN_EXCEPTION" -> throw new RuntimeException("Something went wrong");
+                default -> response = new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
             }
             return response;
         }

@@ -1,26 +1,28 @@
 package ru.molchmd.minibank.frontend.telegrambot.commands;
 
+import lombok.NonNull;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.ResourceAccessException;
 import org.springframework.web.client.RestTemplate;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Update;
-import ru.molchmd.minibank.frontend.client.dto.request.CreateUserRequest;
+import ru.molchmd.minibank.frontend.client.dto.request.CreateAccountRequest;
 import ru.molchmd.minibank.frontend.telegrambot.util.TextResponse;
 
 @Component
-public class RegisterCommand implements ICommand {
+public class CreateAccountCommand implements ICommand {
     private final String endpoint;
     private final RestTemplate rest;
+    private final String accountName;
 
-    public RegisterCommand(@Value("${telegrambot.client.urls.endpoints.users.register}") String endpoint,
-                           RestTemplate rest) {
+    public CreateAccountCommand(@Value("${telegrambot.client.urls.endpoints.accounts.create}") String endpoint,
+                                RestTemplate rest) {
         this.endpoint = endpoint;
         this.rest = rest;
+        this.accountName = "Акционный";
     }
 
     @Override
@@ -30,7 +32,7 @@ public class RegisterCommand implements ICommand {
 
         var response = executeRequest(
                 update.getMessage().getChatId(),
-                update.getMessage().getChat().getUserName()
+                accountName
         );
 
         message.setText(getTextFromResponse(response));
@@ -38,12 +40,13 @@ public class RegisterCommand implements ICommand {
         return message;
     }
 
-    private ResponseEntity<String> executeRequest(Long userId, String userName) {
+    private ResponseEntity<String> executeRequest(Long userId, String accountName) {
         try {
             ResponseEntity<String> response = rest.postForEntity(
                     endpoint,
-                    new CreateUserRequest(userId, userName),
-                    String.class
+                    new CreateAccountRequest(accountName),
+                    String.class,
+                    userId
             );
             return response;
         }
@@ -60,8 +63,9 @@ public class RegisterCommand implements ICommand {
         HttpStatus code = HttpStatus.valueOf(response.getStatusCode().value());
 
         switch (code) {
-            case CREATED -> text = "Вы успешно зарегистрировались!";
-            case CONFLICT -> text = "_Ошибка!_ Вы уже зарегистрированы!";
+            case CREATED -> text = "Счет успешно создан!";
+            case BAD_REQUEST -> text = TextResponse.userIsNotRegistered();
+            case CONFLICT -> text = "_Ошибка!_ Вы уже создали счет.";
             case SERVICE_UNAVAILABLE -> text = TextResponse.serverIsNotAvailable();
             default -> text = TextResponse.somethingWentWrong();
         }
@@ -70,6 +74,6 @@ public class RegisterCommand implements ICommand {
 
     @Override
     public @NonNull Command getCommand() {
-        return Command.REGISTER;
+        return Command.CREATE_ACCOUNT;
     }
 }
