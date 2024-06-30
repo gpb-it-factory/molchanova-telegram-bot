@@ -17,6 +17,7 @@ public class HelpCommandTest {
             | /help - список доступных команд
             | /register - зарегистрироваться
             | /createaccount - создать счет
+            | /currentbalance - посмотреть счета
             """;
 
     @DisplayName("Проверка ответа")

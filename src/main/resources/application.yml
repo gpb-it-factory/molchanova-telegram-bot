@@ -13,3 +13,6 @@ telegrambot:
           register: /users
         accounts:
           create: /users/{id}/accounts
+          get: /users/{id}/accounts
+        transfers:
+          create: /transfers
