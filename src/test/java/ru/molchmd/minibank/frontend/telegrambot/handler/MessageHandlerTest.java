@@ -11,52 +11,40 @@ import ru.molchmd.minibank.frontend.factory.UpdateFactory;
 public class MessageHandlerTest {
     private final MessageHandler messageHandler = MessageHandlerFactory.createMessageHandler();
 
-    @DisplayName("Проверка ответа команды /start")
+    @DisplayName("Проверка выбора команды /start")
     @Test
     void getResponseOnStartCommand() {
         Update update = UpdateFactory.createUpdate("/start");
-        String EXPECTED_ANSWER = """
-                        Добро пожаловать в наш мини-банк, Tester!
-                        Я ваш персональный банковский помощник.
-                        
-                        Используйте /help, чтобы узнать список доступных команд.
-                        """;
+        String EXPECTED_ANSWER = "START";
 
         String responseMessage = messageHandler.createResponse(update).getText();
 
         Assertions.assertEquals(EXPECTED_ANSWER, responseMessage);
     }
 
-    @DisplayName("Проверка ответа команды /help")
+    @DisplayName("Проверка выбора команды /help")
     @Test
     void getResponseOnHelpCommand() {
         Update update = UpdateFactory.createUpdate("/help");
-        String EXPECTED_ANSWER = """
-            Всегда готов помочь!
-                 
-            Доступные команды:
-            | /help - список доступных команд
-            | /register - зарегистрироваться
-            | /createaccount - создать счет
-            """;
+        String EXPECTED_ANSWER = "HELP";
 
         String responseMessage = messageHandler.createResponse(update).getText();
 
         Assertions.assertEquals(EXPECTED_ANSWER, responseMessage);
     }
 
-    @DisplayName("Проверка ответа команды /ping")
+    @DisplayName("Проверка выбора команды /ping")
     @Test
     void getResponseOnPingCommand() {
         Update update = UpdateFactory.createUpdate("/ping");
-        String EXPECTED_ANSWER = "pong";
+        String EXPECTED_ANSWER = "PING";
 
         String responseMessage = messageHandler.createResponse(update).getText();
 
         Assertions.assertEquals(EXPECTED_ANSWER, responseMessage);
     }
 
-    @DisplayName("Проверка ответа неизвестной команды")
+    @DisplayName("Проверка выбора неизвестной команды")
     @Test
     void getResponseOnUnknownCommand() {
         Update update = UpdateFactory.createUpdate("/hello");
@@ -70,22 +58,33 @@ public class MessageHandlerTest {
         Assertions.assertEquals(EXPECTED_ANSWER, responseMessage);
     }
 
-    @DisplayName("Проверка ответа команды /register")
+    @DisplayName("Проверка выбора команды /register")
     @Test
     void getResponseOnRegisterCommand() {
         Update update = UpdateFactory.createUpdate("/register");
-        String EXPECTED_ANSWER = "Вы успешно зарегистрировались!";
+        String EXPECTED_ANSWER = "REGISTER";
 
         String responseMessage = messageHandler.createResponse(update).getText();
 
         Assertions.assertEquals(EXPECTED_ANSWER, responseMessage);
     }
 
-    @DisplayName("Проверка ответа команды /createaccount")
+    @DisplayName("Проверка выбора команды /createaccount")
     @Test
     void getResponseOnCreateAccountCommand() {
         Update update = UpdateFactory.createUpdate("/createaccount");
-        String EXPECTED_ANSWER = "Счет успешно создан!";
+        String EXPECTED_ANSWER = "CREATE_ACCOUNT";
+
+        String responseMessage = messageHandler.createResponse(update).getText();
+
+        Assertions.assertEquals(EXPECTED_ANSWER, responseMessage);
+    }
+
+    @DisplayName("Проверка выбора команды /currentbalance")
+    @Test
+    void getResponseOnCurrentBalanceCommand() {
+        Update update = UpdateFactory.createUpdate("/currentbalance");
+        String EXPECTED_ANSWER = "CURRENT_BALANCE";
 
         String responseMessage = messageHandler.createResponse(update).getText();
 

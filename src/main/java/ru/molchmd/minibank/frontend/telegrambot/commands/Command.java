@@ -5,7 +5,8 @@ public enum Command {
     HELP("/help", "список доступных команд", true),
     PING("/ping", "отвечу pong", false),
     REGISTER("/register", "зарегистрироваться", true),
-    CREATE_ACCOUNT("/createaccount", "создать счет", true);
+    CREATE_ACCOUNT("/createaccount", "создать счет", true),
+    CURRENT_BALANCE("/currentbalance", "посмотреть счета", true);
 
     public final String name;
     public final String description;
