@@ -90,4 +90,15 @@ public class MessageHandlerTest {
 
         Assertions.assertEquals(EXPECTED_ANSWER, responseMessage);
     }
+
+    @DisplayName("Проверка выбора команды /transfer")
+    @Test
+    void getResponseOnTransferCommand() {
+        Update update = UpdateFactory.createUpdate("/transfer");
+        String EXPECTED_ANSWER = "TRANSFER";
+
+        String responseMessage = messageHandler.createResponse(update).getText();
+
+        Assertions.assertEquals(EXPECTED_ANSWER, responseMessage);
+    }
 }
