@@ -18,6 +18,7 @@ public class HelpCommandTest {
             | /register - зарегистрироваться
             | /createaccount - создать счет
             | /currentbalance - посмотреть счета
+            | /transfer - перевести деньги
             """;
 
     @DisplayName("Проверка ответа")
